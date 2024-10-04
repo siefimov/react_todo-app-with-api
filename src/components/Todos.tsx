@@ -43,15 +43,14 @@ export const Todos: React.FC<Props> = ({
   const notCompletedTodos = todos.filter(todo => !todo.completed);
 
   const filteredTodos = todos.filter(todo => {
-    if (filter === TodoFilter.Active) {
-      return !todo.completed;
+    switch (filter) {
+      case TodoFilter.Active:
+        return !todo.completed;
+      case TodoFilter.Completed:
+        return todo.completed;
+      default:
+        return true;
     }
-
-    if (filter === TodoFilter.Completed) {
-      return todo.completed;
-    }
-
-    return true;
   });
 
   return (
